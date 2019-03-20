@@ -12,10 +12,6 @@ class QueueImp<T> {
 
 	}
 
-	public QueueImp() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public void enqueue(T item) {
 		if (isFull()) {
 			System.out.println("Overflow");

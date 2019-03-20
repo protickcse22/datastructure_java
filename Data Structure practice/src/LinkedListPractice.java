@@ -1,5 +1,5 @@
 // utility class for Linkedlist
-public class LinkedList<T> {
+public class LinkedListPractice<T> {
 	// Declaring Head node
 	Node<T> head;
 	int size = 0;
@@ -15,7 +15,7 @@ public class LinkedList<T> {
 		}
 	}
 
-	public LinkedList<T> insertNode(LinkedList<T> list, T data) {
+	public LinkedListPractice<T> insertNode(LinkedListPractice<T> list, T data) {
 		// creating a new Node
 		Node<T> newNode = new Node<T>(data);
 		// newNode.next = null;
@@ -37,7 +37,7 @@ public class LinkedList<T> {
 		return list;
 	}
 
-	public LinkedList<T> insertNodePos(LinkedList<T> list, T data, int pos) {
+	public LinkedListPractice<T> insertNodePos(LinkedListPractice<T> list, T data, int pos) {
 		// creating a new Node
 		Node<T> newNode = new Node<T>(data);
 		newNode.next = null;
@@ -61,7 +61,7 @@ public class LinkedList<T> {
 		return list;
 	}
 
-	public void traverseList(LinkedList<T> list) {
+	public void traverseList(LinkedListPractice<T> list) {
 		Node<T> temp = (Node<T>) list.head;
 		while (temp != null) {
 			System.out.println("Data: " + temp.data);
@@ -82,11 +82,11 @@ public class LinkedList<T> {
 	 * }
 	 */
 
-	public void deleteHeadNode(LinkedList<T> list) {
+	public void deleteHeadNode(LinkedListPractice<T> list) {
 		list.head = list.head.next;
 	}
 
-	public void deleteLastNode(LinkedList<T> list) {
+	public void deleteLastNode(LinkedListPractice<T> list) {
 		Node<T> prevNode = list.head;
 		Node<T> nextNode = list.head.next;
 		while (nextNode.next != null) {
@@ -96,7 +96,7 @@ public class LinkedList<T> {
 		prevNode.next = null;
 	}
 
-	public void deleteposNode(LinkedList<T> list, int pos) {
+	public void deleteposNode(LinkedListPractice<T> list, int pos) {
 
 		Node<T> prevNode, nextNode;
 		prevNode = list.head;
@@ -110,7 +110,7 @@ public class LinkedList<T> {
 
 	}
 
-	public LinkedList<T> reverserList(LinkedList<T> list) {
+	public LinkedListPractice<T> reverserList(LinkedListPractice<T> list) {
 
 		Node<T> prev, current, next;
 		prev = null;
@@ -131,7 +131,7 @@ public class LinkedList<T> {
 
 	public static void main(String[] args) {
 
-		LinkedList<String> list = new LinkedList<String>();
+		LinkedListPractice<String> list = new LinkedListPractice<String>();
 		list.insertNode(list, "protick");
 		list.insertNode(list, "Reza");
 		list.insertNode(list, "Shovon");
@@ -149,5 +149,7 @@ public class LinkedList<T> {
 		list.traverseList(list);
 
 	}
+
+	
 
 }
