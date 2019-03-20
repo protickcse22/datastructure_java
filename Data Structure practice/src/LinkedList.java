@@ -71,26 +71,16 @@ public class LinkedList<T> {
 
 	}
 
-
-/*	public void LinkedListSort(LinkedList<T> list) {
-
-		if (size > 1) {
-			for (int i = 0; i < size; i++) {
-				Node<T> current = list.head;
-				Node<T> next = list.head.next;
-				for (int j = 0; j < size - 1; j++) {
-					if (current.data > next.data) {
-						Node<T> temp = current;
-						current = next;
-						next = temp;
-					}
-					current = next;
-					next = next.next;
-				}
-			}
-		}
-
-	}*/
+	/*
+	 * public void LinkedListSort(LinkedList<T> list) {
+	 * 
+	 * if (size > 1) { for (int i = 0; i < size; i++) { Node<T> current =
+	 * list.head; Node<T> next = list.head.next; for (int j = 0; j < size - 1;
+	 * j++) { if (current.data > next.data) { Node<T> temp = current; current =
+	 * next; next = temp; } current = next; next = next.next; } } }
+	 * 
+	 * }
+	 */
 
 	public void deleteHeadNode(LinkedList<T> list) {
 		list.head = list.head.next;
