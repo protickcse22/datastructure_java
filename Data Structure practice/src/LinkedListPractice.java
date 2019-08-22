@@ -1,155 +1,128 @@
-// utility class for Linkedlist
-public class LinkedListPractice<T> {
-	// Declaring Head node
-	Node<T> head;
-	int size = 0;
 
-	// utility class for Node
+public final class LinkedListPractice {
+	static Node head;
+
 	static class Node<T> {
 		T data;
-		Node<T> next;
+		Node link;
 
 		public Node(T data) {
 			this.data = data;
-			next = null;
+			this.link = null;
 		}
 	}
 
-	public LinkedListPractice<T> insertNode(LinkedListPractice<T> list, T data) {
-		// creating a new Node
-		Node<T> newNode = new Node<T>(data);
-		// newNode.next = null;
-		// Insert node at the beginning of the list
-		if (list.head == null) {
-			list.head = newNode;
+	public static <T> void insertNodeHead(T data) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+		} else {
+			newNode.link = head;
+			head = newNode;
 		}
-
-		// Insert node at end of the list
-		else {
-			Node<T> temp = list.head;
-			while (temp.next != null) {
-				temp = (Node<T>) temp.next;
-			}
-
-			temp.next = newNode;
-		}
-
-		return list;
 	}
 
-	public LinkedListPractice<T> insertNodePos(LinkedListPractice<T> list, T data, int pos) {
-		// creating a new Node
-		Node<T> newNode = new Node<T>(data);
-		newNode.next = null;
-		// Insert node at the beginning of the list
-		if (list.head == null) {
-			list.head = newNode;
-		}
-
-		// Insert node at end of the list
-		else {
-			Node<T> temp = list.head;
-
+	public static <T> void insertNodepos(T data, int pos) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+			return;
+		} else {
+			Node tempNode = head;
 			for (int i = 0; i < pos - 2; i++) {
-				temp = temp.next;
+				tempNode = tempNode.link;
 			}
-			newNode.next = temp.next;
-			temp.next = newNode;
+			newNode.link = tempNode.link;
+			tempNode.link = newNode;
 
 		}
-
-		return list;
 	}
 
-	public void traverseList(LinkedListPractice<T> list) {
-		Node<T> temp = (Node<T>) list.head;
+	public static <T> void insertNodelast(T data) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+			return;
+		} else {
+			Node tempNode = head;
+			while (tempNode.link != null) {
+				tempNode = tempNode.link;
+			}
+			tempNode.link = newNode;
+
+		}
+	}
+
+	public static void reverseList() {
+		Node prevNode = null;
+		Node currNode = head;
+		Node nextNode = null;
+
+		while (currNode != null) {
+			nextNode = currNode.link;
+			currNode.link = prevNode;
+			prevNode = currNode;
+			currNode = nextNode;
+		}
+		head = prevNode;
+
+	}
+
+	public static void deleteHeadNode() {
+		if (head == null)
+			return;
+		head = head.link;
+	}
+
+	public static void printInfo() {
+		if (head == null)
+			return;
+		Node temp = head;
 		while (temp != null) {
-			System.out.println("Data: " + temp.data);
-			temp = (Node<T>) temp.next;
-			size++;
+			System.out.println(temp.data);
+			temp = temp.link;
 		}
-
 	}
 
-	/*
-	 * public void LinkedListSort(LinkedList<T> list) {
-	 * 
-	 * if (size > 1) { for (int i = 0; i < size; i++) { Node<T> current =
-	 * list.head; Node<T> next = list.head.next; for (int j = 0; j < size - 1;
-	 * j++) { if (current.data > next.data) { Node<T> temp = current; current =
-	 * next; next = temp; } current = next; next = next.next; } } }
-	 * 
-	 * }
-	 */
-
-	public void deleteHeadNode(LinkedListPractice<T> list) {
-		list.head = list.head.next;
-	}
-
-	public void deleteLastNode(LinkedListPractice<T> list) {
-		Node<T> prevNode = list.head;
-		Node<T> nextNode = list.head.next;
-		while (nextNode.next != null) {
-			prevNode = nextNode;
-			nextNode = nextNode.next;
-		}
-		prevNode.next = null;
-	}
-
-	public void deleteposNode(LinkedListPractice<T> list, int pos) {
-
-		Node<T> prevNode, nextNode;
-		prevNode = list.head;
-		nextNode = list.head.next;
-
+	public static void delPosNode(int pos) {
+		if (head == null)
+			return;
+		Node currentNode = head;
+		Node nextNode = head.link;
 		for (int i = 0; i < pos - 2; i++) {
-			prevNode = nextNode;
-			nextNode = nextNode.next;
+			currentNode = nextNode;
+			nextNode = nextNode.link;
 		}
-		prevNode.next = nextNode.next;
-
+		currentNode.link = nextNode.link;
 	}
 
-	public LinkedListPractice<T> reverserList(LinkedListPractice<T> list) {
-
-		Node<T> prev, current, next;
-		prev = null;
-		current = list.head;
-		next = null;
-
-		while (current != null) {
-			next = current.next;
-			current.next = prev;
-			prev = current;
-			current = next;
+	public static void delLastNode() {
+		if (head == null)
+			return;
+		Node currentNode = head;
+		Node nextNode = head.link;
+		while (nextNode.link != null) {
+			currentNode = nextNode;
+			nextNode = nextNode.link;
 		}
-		list.head = prev;
-
-		return list;
-
+		currentNode.link = null;
 	}
 
 	public static void main(String[] args) {
-
-		LinkedListPractice<String> list = new LinkedListPractice<String>();
-		list.insertNode(list, "protick");
-		list.insertNode(list, "Reza");
-		list.insertNode(list, "Shovon");
-		list.insertNodePos(list, "Hello", 2);
-		list.insertNodePos(list, "Sami", 3);
-		list.insertNodePos(list, "Munna", 2);
-		list.traverseList(list);
-		System.out.println("Size " + list.size);
-		System.out.println("\n\n");
-		// list.deleteLastNode(list);
-		list.deleteposNode(list, 3);
-		list.traverseList(list);
-		list.reverserList(list);
-		System.out.println("\n\n");
-		list.traverseList(list);
+//		LinkedListPractice list = new LinkedListPractice();
+		insertNodelast("Protick");
+		insertNodelast(20);
+		insertNodelast(30);
+		insertNodelast(40);
+		insertNodepos(25, 2);
+		insertNodelast(60);
+		printInfo();
+		System.out.println("Delete head node");
+//		reverseList();
+//		printInfo();
+		deleteHeadNode();
+		printInfo();
 
 	}
-
-	
 
 }
